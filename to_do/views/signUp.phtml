@@ -1,0 +1,26 @@
+<main class="container">
+	<div class="button">
+		<p><a href="SignIn"><= Retour</a></p>
+		<p><a href="index.php"><== Accueil</a></p>
+	</div>
+	
+	<form method="post">
+		<p>
+			<label for='nickName'>Nom</label>
+			<input type="text" name="nickName" id="nickName" required value="<?= $nickName ?>">
+		</p>
+		
+		<p>
+			<label for='pw'>Mot de passe</label>
+			<input type="password" name="pw" id="pw" required>
+		</p>
+		
+		<p>
+			<label for='confirmPw'>Confirmation du mot de passe</label>
+			<input type="password" name="confirmPw" id="confirmPw" required>
+		</p>
+		<p class="messageSign"><?= $this -> message ?></p>
+		
+		<button>S'inscrire</button>
+	</form>
+</main>

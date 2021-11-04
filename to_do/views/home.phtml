@@ -1,0 +1,61 @@
+<main class="container">
+    
+    <?php if(isset($_SESSION['users']) || isset($_SESSION['admin'])): ?>
+        <form method="post">
+            <label for="task">Quelque chose à faire</label>
+    		<input type="text" name="task" id="task">
+                <button>Ajouter une tâche</button>
+        </form>
+    <?php endif; ?>
+    
+    <?php if(isset($_SESSION['users']) || isset($_SESSION['admin'])): ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Numéro</th>
+                    <th>Tâche à effectuer</th>
+                    <th>Auteur</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <?php
+                        $compteur = 0;
+                        foreach($tasks as $task): 
+                        $compteur++; ?>
+                        
+                        <tr class="toggle">
+                            <td><?= $compteur ?></td>
+                            <td><?= $task['task'] ?></td>
+                            <td><?= $task['nickName'] ?></td>
+                            <?php if(isset($_SESSION['users']) && $_SESSION['users'] == $task['nickName'] || isset($_SESSION['admin'])): ?>
+                                <td><button class="swapInput"><i class="fas fa-pen-nib"></i></td>
+                                <td><a href="index.php?action=deleteTask&id=<?= $task['id'] ?>" type="button"class="destroy"><i class="fas fa-trash-alt"></i></a></td>
+                            <?php endif; ?>
+                        </tr>
+                        
+                        <tr class="hide">
+                            <td><?= $compteur ?></td>
+                            <td><input class="task" type="text" value="<?= $task['task'] ?>"></td>
+                            <td><?= $task['nickName'] ?></td>
+                            <?php if(isset($_SESSION['users']) && $_SESSION['users'] == $task['nickName']  || isset($_SESSION['admin'])): ?>
+                                <td><button type="submit" class="validate" value="<?= $task['id'] ?>"><i class="fas fa-check-square"></i></td>
+                                <td><a href="index.php?action=deleteTask&id=<?= $task['id'] ?>" class="destroy"><i class="fas fa-trash-alt"></i></a></td>
+                            <?php endif; ?>
+                        </tr>
+                        
+                        <!--Sans ajax-->
+                        <!--<tr>-->
+                        <!--    <td><?= $compteur ?></td>-->
+                        <!--    <td><?= $task['task'] ?></td>-->
+                        <!--    <td><?= $task['nickName'] ?></td>-->
+                        <!--    <td><a href="index.php?action=deleteTask&id=<?= $task['id'] ?>" class="destroy"><i class="fas fa-trash-alt"></i></a></td>-->
+                        <!--</tr>-->
+                    <?php endforeach; ?>
+                </tbody>
+        </table>
+    <?php else: ?>
+        <h2>Connecte/inscris-toi pour ajouter des tâches et voir la liste!</h2>
+    <?php endif; ?>
+</main>

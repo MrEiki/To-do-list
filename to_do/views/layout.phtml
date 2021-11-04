@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>To do list</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" >
+	<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+</head>
+<body>
+	<header>
+    	<h1>TO DO LIST créée en PHP</h1>
+    	<!-- Bouton de connexion/déconnexion -->
+    	<?php if(!isset($_SESSION['users']) && !isset($_GET['page'])): ?>
+    		<p><a href="SignIn" class="co">Connexion</a></p>
+    		<p><a href="SignUp" class="co">Inscription</a></p>
+    	<?php endif; ?>
+    	<?php if(isset($_SESSION['users'])): ?>
+    		<p>Bonjour <?= $_SESSION['users'] ?></p>
+    		<p><a href="index.php?action=deco" class="co">Déconnexion</a></p>
+    	<?php endif; ?>
+	</header>
+	
+	
+    <!-- code principal de la page -->
+    <?php include $template ?>
+	
+	
+	<footer>
+	</footer>
+	
+	<script src="assets/js/script.js"></script>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+<main class="container">
+	<div class="button">
+		<p><a href="index.php"><= Retour</a></p>
+		<p><a href="SignUp">S'inscrire =></a></p>
+	</div>
+	
+	<form method="post">
+		<p>
+			<label for='nickName'>Pseudo</label>
+			<input type="text" name="nickName" id="nickName" required value="<?= $nickName ?>">
+		</p>
+		<p>
+			<label for='pw'>Mot de passe</label>
+			<input type="password" name="pw" id="pw" required>
+		</p>
+		<button>Se connecter</button>
+		<p class="messageSign"><?= $this -> message ?></p>
+	</form>
+</main>
